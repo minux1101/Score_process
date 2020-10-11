@@ -1,0 +1,48 @@
+<html>  <!--HTML 언어로 작성 시작-->
+<head>  <!--머리말 시작-->
+   <meta charset="utf-8">  <!--utf-8형식 사용-->
+   <title>추가</title>  <!--제목-->
+</head><!--머리말 끝-->
+<script>
+function checking() {  /*이름과 점수들이 공백이나 null값이면 경고창이 나온다*/
+	if (document.getElementById("name").value == "" || document.getElementById("name").value == null ||
+		document.getElementById("kor").value == "" || document.getElementById("kor").value == null ||
+		document.getElementById("eng").value == "" || document.getElementById("eng").value == null ||
+		document.getElementById("mat").value == "" || document.getElementById("mat").value == null) {
+		alert("빈 칸을 채워주십시오");
+	} else {
+		document.form1.action="./insertDB.jsp"; /*이름과 점수들이 공백이나 null값이 아니면 insertDB.jsp로 이동*/
+		document.form1.submit();  /*form1의 값을 넘긴다.*/
+	}
+}
+</script>
+<body><!--본문 시작-->
+<H1>성적입력추가</H1>
+<br>
+<form method="post" name="form1">
+<input type="button" value="추가" style=margin-left:500px onclick="checking()"><br><br> <!--추가를 누르면 checking()을 호출해서 공백이 없으면 insertDB.jsp로 이동-->
+<table style=text-align:center; border=1px>
+	<tr>
+		<td width=150px>이름</td> <!--이름을 입력하는데 한글과 영어만 입력되고, 그 외의 문자는 공백으로 바뀐다.-->
+		<td width=400px><input onkeyup="this.value=this.value.replace(/[^가-힣a-zA-Z]/g,'');" name="name" id="name"></td>
+	</tr>
+	<tr>
+		<td>학번</td>
+		<td>자동부여</td>
+	</tr>
+	<tr>
+		<td>국어</td> <!--국어점수를 입력하는데  숫자가 아니면 공백으로 바뀌고, 점수가 100 이상이면 100이 되고, 0 이하면 0이 된다.-->
+		<td><input onkeyup="this.value=this.value.replace(/[^0-9]/g,''); if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" name="kor" id="kor"></td>
+	</tr>
+	<tr>
+		<td>영어</td> <!--영어점수를 입력하는데  숫자가 아니면 공백으로 바뀌고, 점수가 100 이상이면 100이 되고, 0 이하면 0이 된다.-->
+		<td><input onkeyup="this.value=this.value.replace(/[^0-9]/g,''); if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" name="eng" id="eng"></td>
+	</tr>
+	<tr>
+		<td>수학</td>  <!--수학점수를 입력하는데  숫자가 아니면 공백으로 바뀌고, 점수가 100 이상이면 100이 되고, 0 이하면 0이 된다.-->
+		<td><input onkeyup="this.value=this.value.replace(/[^0-9]/g,''); if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" name="mat" id="mat"></td>
+	</tr>	
+</table>
+</form>
+</body>
+</html>

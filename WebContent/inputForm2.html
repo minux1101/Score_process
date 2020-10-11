@@ -1,0 +1,47 @@
+<html>  <!--HTML 언어로 작성 시작-->
+<head>  <!--머리말 시작-->
+   <meta charset="utf-8">  <!--utf-8형식 사용-->
+   <title>추가</title>  <!--제목-->
+</head><!--머리말 끝-->
+<script>
+function checking() {
+	if (document.getElementById("studentId").value == "" || document.getElementById("studentId").value == null) {
+		alert("빈 칸을 채워주십시오");  /*studentId가 null값이거나 공백일 때 경고창이 나온다.*/
+	} else {
+		document.form1.action="./showREC.jsp";  /*studentId가 값이 있으면 showREC.jsp로 이동한다.*/
+		document.form1.submit();  /*form1의 값을 넘긴다.*/
+	}
+}
+</script>
+<body><!--본문 시작-->
+<H1>성적 조회 후 정정/ 삭제</H1>
+<br>
+<form method="post" name="form1"> <!--학번을 조회하는데 숫자만 입력할수 있고, 그 외 문자는 공백으로 바뀐다.-->
+조회할 학번 <input onkeyup="this.value=this.value.replace(/[^0-9]/g,'');" name="studentId" id="studentId" style=margin-left:30px>
+<input type="button" value="조회" style=margin-left:10px onclick="checking()"> <!--조회를 누르면 checking()을 호출해서 공백이 없으면 showREC.jsp로 이동-->
+<br><br>
+<table style=text-align:center; border=1px>
+	<tr>
+		<td width=150px>이름</td>  <!--폼에 입력할 수없는 읽기 전용 형식-->
+		<td width=400px><input type="text" name="name" readonly></td>
+	</tr>
+	<tr>
+		<td>학번</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>국어</td>  <!--폼에 입력할 수없는 읽기 전용 형식-->
+		<td><input type="text" name="kor" readonly></td>
+	</tr>
+	<tr>
+		<td>영어</td>  <!--폼에 입력할 수없는 읽기 전용 형식-->
+		<td><input type="text" name="eng" readonly></td>
+	</tr>
+	<tr>
+		<td>수학</td>  <!--폼에 입력할 수없는 읽기 전용 형식-->
+		<td><input type="text" name="mat" readonly></td>
+	</tr>	
+</table>
+</form>
+</body>
+</html>
